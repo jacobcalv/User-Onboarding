@@ -25,7 +25,20 @@ const UserForm = () => {
 export default withFormik({
     mapPropsToValues: (values) => {
         return{
-
+            name: values.name || '',
+            email: values.email || '',
+            password: values.password || '',
+            terms: values.terms || false,
+            
         }
+    },
+    validationSchema: yup.object().shape({
+        name: yup.string().required('Name Field Must Be Filled Out'),
+        email: yup.string().required('Email Field Must Be Filled Out'),
+        password: yup.string().required('Password Must Be Filled Out'),
+        terms: yup.boolean().oneOf([true], 'You Must Accept Terms of Service')
+    }),
+    handleSubmit: (values)=>{
+        console.log(values)
     }
 })(UserForm);
