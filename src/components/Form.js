@@ -2,15 +2,23 @@ import React from 'react';
 import {withFormik, Form, Field} from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
+import '../App.css'
 
-const UserForm = () => {
+const UserForm = ({errors, touched, status}) => {
     return(
-        <div>
+        <div className='reg'>
             <h1>Registration</h1>
             <Form>
+                {touched.name && errors.name && <p className='error'>{errors.name}</p>}
                 <Field type='text' name='name' placeholder='Name'/>
+
+                {touched.email && errors.email && <p className='error'>{errors.email}</p>}
                 <Field type='text' name='email' placeholder='Email'/>
+
+                {touched.password && errors.password && <p className='error'>{errors.password}</p>}
                 <Field type='text' name='password' placeholder='Password'/>
+
+                {touched.terms && errors.terms && <p className='error'>{errors.terms}</p>}
                 <label>
                     <Field type='checkbox' name='terms'/>
                     <span>Accept Terms of Service</span>
